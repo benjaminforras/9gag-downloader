@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         9gag-downloader
 // @namespace    https://github.com/TryHardDood/9gag-downloader/
-// @version      0.1
+// @version      0.2
 // @description  Downloads videos and images from 9gag using FileSaver
 // @author       TryHardDood
 // @require      https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
@@ -15,7 +15,7 @@
     console.log('9GAG Downloader loading');
     const htmlTemplate = '<ul class="btn-vote right download"><li><a href="javascript:void(0);" rel="nofollow" class="down">Download</a></li></ul>';
 
-    document.querySelectorAll('article div.in-list-view').forEach((value) => {
+    document.querySelectorAll('div.main-wrap section article .post-afterbar-a:not(.full-width)').forEach((value) => {
         if (!value.querySelector('ul.download')) {
             value.insertAdjacentHTML('beforeend', htmlTemplate);
         }
@@ -26,14 +26,14 @@
     }
 
     let obs = new MutationObserver(function () {
-        document.querySelectorAll('article div.in-list-view').forEach((value) => {
+        document.querySelectorAll('div.main-wrap section article .post-afterbar-a:not(.full-width)').forEach((value) => {
             if (!value.querySelector('ul.download')) {
                 value.insertAdjacentHTML('beforeend', htmlTemplate);
             }
         });
     });
 
-    obs.observe(document.getElementById('list-view-2'), {
+    obs.observe(document.querySelector('div.main-wrap section'), {
         childList: true
     });
 
@@ -42,7 +42,7 @@
 
         event.preventDefault();
 
-        const post = event.target.closest('article').querySelectorAll('a.badge-track')[1];
+        const post = event.target.closest('article').querySelector('.post-container');
         let url;
         if (post.querySelector('img')) {
             url = post.querySelector('img').src;
