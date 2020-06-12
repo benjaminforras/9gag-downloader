@@ -14,4 +14,4 @@
 ## TODOs:
 
 - [ ] Show download progress graphically
-- [ ] Download images and videos from invidual post pages.
+- [x] Download images and videos from invidual post pages.
