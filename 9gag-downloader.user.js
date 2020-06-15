@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         9gag-downloader
 // @namespace    https://github.com/TryHardDood/9gag-downloader/
-// @version      0.2
+// @version      0.2.1
 // @description  Downloads videos and images from 9gag using FileSaver
 // @author       TryHardDood
 // @require      https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
@@ -33,7 +33,7 @@
         });
     });
 
-    obs.observe(document.querySelector('div.main-wrap section'), {
+    obs.observe(document.querySelector('div.main-wrap section#list-view-2'), {
         childList: true
     });
 
